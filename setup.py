@@ -29,14 +29,19 @@ class Setup(commands.Cog, name="Configuración"):
         if not isinstance(config, dict):
             config = {}
 
+        canal_logs_txt = f"<#{config['canal_logs']}>" if config.get('canal_logs') else "❌ No configurado"
+        canal_cmds_txt = f"<#{config['canal_comandos']}>" if config.get('canal_comandos') else "❌ No configurado"
+        rol_staff_txt  = f"<@&{config['rol_staff']}>" if config.get('rol_staff') else "❌ No configurado"
+        color_hex      = hex(config.get('color_principal', 0x5865F2))[2:].upper()
+
         e = embed_info(
             "⚙️ Configuración del Bot — V1 Sistemas",
             (
                 f"**Prefijo actual:** `{config.get('prefijo', '?')}`\n"
-                f"**Color principal:** `#{hex(config.get('color_principal', 0x5865F2))[2:].upper()}`\n"
-                f"**Canal de logs:** {f'<#{config[\"canal_logs\"]}>' if config.get('canal_logs') else '❌ No configurado'}\n"
-                f"**Canal de comandos:** {f'<#{config[\"canal_comandos\"]}>' if config.get('canal_comandos') else '❌ No configurado'}\n"
-                f"**Rol Staff:** {f'<@&{config[\"rol_staff\"]}>' if config.get('rol_staff') else '❌ No configurado'}\n\n"
+                f"**Color principal:** `#{color_hex}`\n"
+                f"**Canal de logs:** {canal_logs_txt}\n"
+                f"**Canal de comandos:** {canal_cmds_txt}\n"
+                f"**Rol Staff:** {rol_staff_txt}\n\n"
                 "Usa los botones para personalizar la configuración del bot."
             ),
         )

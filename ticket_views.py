@@ -219,7 +219,7 @@ class _SeleccionarUsuario(View):
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
         return interaction.user.id == self.autor_id
 
-    @discord.ui.user_select(placeholder="Elige un usuario...")
+    @discord.ui.select(cls=discord.ui.UserSelect, placeholder="Elige un usuario...")
     async def seleccionar(self, interaction: discord.Interaction, select: discord.ui.UserSelect):
         await interaction.response.defer(ephemeral=True)
         usuario = select.values[0]
