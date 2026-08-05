@@ -175,7 +175,7 @@ class _SeleccionarCanal(View):
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
         return interaction.user.id == self.autor_id
 
-    @discord.ui.channel_select(placeholder="Elige el canal de bienvenidas...", channel_types=[discord.ChannelType.text])
+    @discord.ui.select(cls=discord.ui.ChannelSelect, placeholder="Elige el canal de bienvenidas...", channel_types=[discord.ChannelType.text])
     async def seleccionar_canal(self, interaction: discord.Interaction, select: discord.ui.ChannelSelect):
         await interaction.response.defer(ephemeral=True)
         canal = select.values[0]

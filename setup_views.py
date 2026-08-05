@@ -196,7 +196,7 @@ class _SeleccionarCanalConfig(View):
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
         return interaction.user.id == self.autor_id
 
-    @discord.ui.channel_select(placeholder="Elige un canal...", channel_types=[discord.ChannelType.text])
+    @discord.ui.select(cls=discord.ui.ChannelSelect, placeholder="Elige un canal...", channel_types=[discord.ChannelType.text])
     async def seleccionar(self, interaction: discord.Interaction, select: discord.ui.ChannelSelect):
         canal = select.values[0]
         self.panel.config[self.clave] = canal.id
@@ -217,7 +217,7 @@ class _SeleccionarRolConfig(View):
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
         return interaction.user.id == self.autor_id
 
-    @discord.ui.role_select(placeholder="Elige un rol...")
+    @discord.ui.select(cls=discord.ui.RoleSelect, placeholder="Elige un rol...")
     async def seleccionar(self, interaction: discord.Interaction, select: discord.ui.RoleSelect):
         rol = select.values[0]
         self.panel.config[self.clave] = rol.id
